@@ -35,6 +35,7 @@ fi
 
 # Within this directory do SQL query for the tables listed in the directories name. I need to find a good way to extract all the tables needed when pushq gets retired  
 
+
 hgsql -Ne "show tables" $dirname > ../$dirname/rawTablelist.txt 
 
 
@@ -80,6 +81,7 @@ cat ../$dirname/Tablelist.txt | grep -v '*chain*\|*net*' > ../$dirname/qatableli
 #Runs robot on DEV hgTableTest.
 #prepName="$(tr '[:lower:]' '[:upper:]' <<< ${db:0:1})${db:1}"
 #hgTablesTest -db=$dirname hgwdev.ucsc.edu/cgi-bin/hgBlat dev${prepName}TablesTestLog
+#check md5sum
 
 
 
