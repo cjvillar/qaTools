@@ -7,8 +7,6 @@ qaTools is currently under development.
 
 Contribute
 
-$ git clone https://github.com/claymfischer/ontogeny.git
-
 $ vi file.txt
 
 $ git pull
