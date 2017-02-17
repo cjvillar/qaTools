@@ -1,0 +1,26 @@
+
+#!/usr/bin/env bash
+
+######################################
+#       USED TO Test CGI's           #
+#         By: Chris V                #
+######################################
+
+# Runs with arguments
+if [ "$1" == "" ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+ echo "usage: Run with any argument to get working ( i.e. -f )"
+ exit 0;
+
+fi
+
+# First use Curl to check the basics.
+
+if curl -s --head  --request GET http://hgwdev.cse.ucsc.edu/cgi-bin/hgVai | grep "200 OK" > /dev/null; then 
+   echo "hgVai is UP"
+else
+   echo "hgVai.com is DOWN"
+fi
+
+#
+
+
