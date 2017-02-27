@@ -35,10 +35,10 @@ fi
 
 
 # Within this directory do SQL query for the tables listed in the directories name. As of now the tables retrieved from the pushQ.  
-#hgsql -Ne "show tables" $dirname > ../$dirname/rawTablelist.txt 
+##Old way of getting tables: hgsql -Ne "show tables" $dirname > ../$dirname/rawTablelist.txt 
 #cat ../$dirname/rawTablelist.txt | if grep "ERROR" ; then echo "mySQL error check $dirname for mispelling"; 
 # exit 0; fi 
-
+# New way of getting tables:
 prepname="$(tr '[:lower:]' '[:upper:]' <<< ${dirname:0:1})${dirname:1}"
 
 hgsql -h mysqlbeta qapushq -Ne "SELECT tbls FROM $dirname WHERE dbs='$dirname'" > ./$dirname/pushQtablesRaw;
@@ -49,10 +49,23 @@ cat ./$dirname/tables${prepname};
 echo “Paste this list into your track QA spreadsheet”;
 
 # Remove any hgFindSpec* and trackDb* files from rawTablelist.txt
-# cat rawTablelist.txt | grep -v 'hgFindSpec*\trackDb*' > ../$dirname/Tablelist.txt
 
-# make pause to check pushq tables are in the makeDoc then use this sql query to change push q from N to Y (will
+
+echo "Do you wish to remove hgFindSpec* and trackDb* files from rawTablelist.txt?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) cat rawTablelist.txt | grep -v 'hgFindSpec*\trackDb*' > ../$dirname/Tablelist.txt ; break;;
+        No ) exit;;
+    esac
+done
+
+
+# make pause to check pushq tables are in the makeDoc then use this sql query to change push q from N to Y 
 # change once pushq is retired. 
+
+
+
+
 #hgsql -h mysqlbeta qapushq "UPDATE $DB SET makeDocYN='Y'" < remember to set $db to $dirname
 
 
