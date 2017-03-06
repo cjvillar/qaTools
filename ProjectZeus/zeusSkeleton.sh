@@ -53,7 +53,7 @@
 	# Usage
 	#########################################################################
 	if [ -z "$1" ]; then
-		echo "Usage"
+		echo "Use -z to get running"
 		exit 0
 	fi
 
