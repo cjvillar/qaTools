@@ -17,7 +17,12 @@ fi
 echo "Enter directory name"
 read dirname
 
-exists=$(hgsql -h mysqlbeta qapushq -Ne "show tables like '$dirname'")
+#old push q way > exists=$(hgsql -h mysqlbeta qapushq -Ne "show tables like '$dirname'")
+
+
+hgsql -h redmine -Ne "select i.id from (select id from issues where tracker_id = 24 and status_id = 10) as i inner join (
+select customized_id, value from custom_values where custom_field_id = 2) as ass on i.id = ass.customized_id where ass.value = '$dirname';" redmine
+
 
  if [ "$exists" == "" ]; then echo "'$dirname'  doesn't exist."; exit 0; fi
 
