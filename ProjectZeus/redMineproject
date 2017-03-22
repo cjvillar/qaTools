@@ -1,0 +1,15 @@
+#!/bin/bash
+
+####################################
+#Used to extract files from redmine#
+####################################
+
+#request for assembly name
+echo "Enter assembly  name"
+read dir
+
+#request redmine ticket number
+echo "Enter Redmine ticket number"
+read num
+
+view  /hive/data/genomes/$dir/redmine$num/redmine.$dir.file.list
