@@ -12,4 +12,5 @@ read dir
 echo "Enter Redmine ticket number"
 read num
 
-view  /hive/data/genomes/$dir/redmine$num/redmine.$dir.file.list
+mkdir /hive/users/chrisv/tracks/$dir 
+cat  /hive/data/genomes/$dir/redmine$num/redmine.$dir.file.list > /hive/users/chrisv/tracks/$dir/FileList.txt 
