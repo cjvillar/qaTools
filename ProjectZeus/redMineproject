@@ -1,8 +1,16 @@
 #!/bin/bash
+#######################
+#Auto QA 2.0          #
+#By Chris Villarreal  #
+#######################
 
-####################################
-#Used to extract files from redmine#
-####################################
+function pause() {
+     read -p "$*"
+}
+
+function nav() {
+     cd /hive/users/$USER/tracks/$dir
+} 
 
 #request for assembly name
 echo "Enter assembly  name"
@@ -12,5 +20,26 @@ read dir
 echo "Enter Redmine ticket number"
 read num
 
-mkdir /hive/users/chrisv/tracks/$dir 
-cat  /hive/data/genomes/$dir/redmine$num/redmine.$dir.file.list > /hive/users/chrisv/tracks/$dir/FileList.txt 
+mkdir  /hive/users/$USER/tracks/$dir 
+cat  /hive/data/genomes/$dir/redmine$num/redmine.$dir.file.list > /hive/users/$USER/tracks/$dir/FileList.txt
+
+cat /hive/data/genomes/$dir/redmine$num/redmine.$dir.table.list > /hive/users/$USER/tracks/$dir/TableList.txt
+
+#echo "You may now navigate to $dir and look at FileList.txt and TableList.txt."
+#pause "Press Enter to move into $dir"
+
+#Below is a yes/no statment that I may use to direct the flow of the script
+#note to self MUST ues SOURCE to run test!!!
+pause 'Do you want to enter '$dir' and view the files (yes/no?): ' 
+case $REPLY in
+       [yY]|[yY][eE][sS]) nav   
+ ;;
+           [nN]|[nN][oO])  echo "Decline"
+ exit 0  
+ ;;
+                       *) echo "Invalid argument" 
+ ;;
+esac
+
+
+
