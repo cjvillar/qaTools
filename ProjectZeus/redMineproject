@@ -30,16 +30,23 @@ cat /hive/data/genomes/$dir/redmine$num/redmine.$dir.table.list > /hive/users/$U
 
 #Below is a yes/no statment that I may use to direct the flow of the script
 #note to self MUST ues SOURCE to run test!!!
-pause 'Do you want to enter '$dir' and view the files (yes/no?): ' 
+pause 'Ok now copy and run this script in the newly created directory: qaGbTracks -f TableList.txt '$dir' '$dir'.outFile. 
+ hit (yes) to enter '$dir' when you have copied the above line. Hit (no) to abort' 
 case $REPLY in
-       [yY]|[yY][eE][sS]) nav   
+       [yY]|[yY][eE][sS])  nav   
  ;;
-           [nN]|[nN][oO])  echo "Decline"
- exit 0  
+           [nN]|[nN][oO])  echo "Ok, the directory '$dir' was created in /hive/users/'$USER'/tracks/ you may navigate to it later."
+   
  ;;
                        *) echo "Invalid argument" 
  ;;
 esac
+
+#Now your directory is made and you have a file list (gbdb file etc) and you have a table list.
+#instead of navigating into $dir you will need to run qaGbTracks on that table list. 
+# to do this change the nav function to qaGbTracks 
+#look for bbi  bisBis1.2bit  html  liftOver  trackDb.ix  trackDb.ixx in gbdb/$dir
+
 
 
 
