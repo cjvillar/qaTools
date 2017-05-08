@@ -4,14 +4,6 @@
 #By Chris Villarreal  #
 #######################
 
-function pause() {
-     read -p "$*"
-}
-
-function nav() {
-     cd /hive/users/$USER/tracks/$dir
-} 
-
 #request for assembly name
 echo "Enter assembly  name"
 read dir
@@ -25,28 +17,15 @@ cat  /hive/data/genomes/$dir/redmine$num/redmine.$dir.file.list > /hive/users/$U
 
 cat /hive/data/genomes/$dir/redmine$num/redmine.$dir.table.list > /hive/users/$USER/tracks/$dir/TableList.txt
 
-#echo "You may now navigate to $dir and look at FileList.txt and TableList.txt."
-#pause "Press Enter to move into $dir"
+echo " Open a new terminal window and navigate to /hive/users/$USER/tracks/$dir to verify  FileList.txt and TableList.txt exist then press Enter to continue. "
 
-#Below is a yes/no statment that I may use to direct the flow of the script
-#note to self MUST ues SOURCE to run test!!!
-pause 'Ok now copy and run this script in the newly created directory: qaGbTracks -f TableList.txt '$dir' '$dir'.outFile. 
- hit (yes) to enter '$dir' when you have copied the above line. Hit (no) to abort' 
-case $REPLY in
-       [yY]|[yY][eE][sS])  nav   
- ;;
-           [nN]|[nN][oO])  echo "Ok, the directory '$dir' was created in /hive/users/'$USER'/tracks/ you may navigate to it later."
-   
- ;;
-                       *) echo "Invalid argument" 
- ;;
-esac
+read -n 1 -s
 
-#Now your directory is made and you have a file list (gbdb file etc) and you have a table list.
+
 #instead of navigating into $dir you will need to run qaGbTracks on that table list. 
-# to do this change the nav function to qaGbTracks 
-#look for bbi  bisBis1.2bit  html  liftOver  trackDb.ix  trackDb.ixx in gbdb/$dir
+#Now look for: bbi  bisBis1.2bit  html  liftOver  trackDb.ix  trackDb.ixx in gbdb/$dir
 
-
+#compare TableList.txt with /cluster/home/$USER/kent/src/hg/makeDb/doc/$dir/initialBuild.txt by using the  ontogeny_highlight.sh script
+#highlight /cluster/home/$USER/kent/src/hg/makeDb/doc/$dir/initialBuild.txt $(cat TableList ) 
 
 
