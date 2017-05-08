@@ -21,6 +21,13 @@ echo " Open a new terminal window and navigate to /hive/users/$USER/tracks/$dir 
 
 read -n 1 -s
 
+echo "press Enter to begin Track QA for tracks in $dir"
+
+read -n 1 -s
+
+echo "Running qaGbTracks for /hive/users/$USER/tracks/$dir/TableList.txt"
+
+qaGbTracks $dir /hive/users/$USER/tracks/$dir/TableList.txt /hive/users/$USER/tracks/$dir/qaGbtracksoutput
 
 #instead of navigating into $dir you will need to run qaGbTracks on that table list. 
 #Now look for: bbi  bisBis1.2bit  html  liftOver  trackDb.ix  trackDb.ixx in gbdb/$dir
